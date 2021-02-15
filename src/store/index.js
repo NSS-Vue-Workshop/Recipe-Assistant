@@ -3,6 +3,8 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
+const apiURL = `https://api.spoonacular.com/recipes/random?number=3&apiKey=${process.env.VUE_APP_SPOONACULAR_KEY}`;
+
 export default new Vuex.Store({
   state: {
     ingredients: [],
@@ -19,8 +21,13 @@ export default new Vuex.Store({
         return i !== payload;
       });
     },
-    setDiets(state, payload) {
-      state.diets = payload;
+    addDiet(state, payload) {
+      state.diets = [...state.diets, payload];
+    },
+    removeDiet(state, payload) {
+      state.diets = state.diets.filter(d => {
+        return d !== payload;
+      });
     },
     setMealType(state, payload) {
       state.mealType = payload;
@@ -29,6 +36,18 @@ export default new Vuex.Store({
       state.searchResults = payload;
     }
   },
-  actions: {},
+  actions: {
+    async getRandomRecipes({ getters, commit }) {
+      const res = await fetch(getters.recipeURL);
+      const data = await res.json();
+      commit("setSearchResults", data);
+    }
+  },
+  getters: {
+    recipeURL({ ingredients, diets, mealType }) {
+      const tags = [...ingredients, ...diets, mealType].join(",").toLowerCase();
+      return `${apiURL}&tags=${tags}`;
+    }
+  },
   modules: {}
 });

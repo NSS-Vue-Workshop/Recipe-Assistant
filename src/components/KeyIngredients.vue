@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title>Key Ingredients</v-card-title>
+    <v-card-title class="primary--text">Key Ingredients</v-card-title>
     <v-card-text>
       <div class="pb-6" v-if="ingredients.length">
         <v-chip-group>

@@ -1,11 +1,11 @@
 <template>
   <v-card height="100%">
-    <v-card-title class="primary--text">Meal Type</v-card-title>
+    <v-card-title class="accent--text">Meal Type</v-card-title>
     <v-card-subtitle class="mt-6">
       <em>Filter results meal type</em>
     </v-card-subtitle>
     <v-card-text>
-      <v-chip-group :value="mealType" active-class="green--text">
+      <v-chip-group column :value="mealType" active-class="green--text">
         <v-chip
           :value="option"
           v-for="option in options"

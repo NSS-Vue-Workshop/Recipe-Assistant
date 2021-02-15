@@ -40,7 +40,7 @@ export default new Vuex.Store({
     async getRandomRecipes({ getters, commit }) {
       const res = await fetch(getters.recipeURL);
       const data = await res.json();
-      commit("setSearchResults", data);
+      commit("setSearchResults", data.recipes);
     }
   },
   getters: {

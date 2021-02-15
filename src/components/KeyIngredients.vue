@@ -1,9 +1,9 @@
 <template>
-  <v-card>
-    <v-card-title class="primary--text">Key Ingredients</v-card-title>
+  <v-card height="100%">
+    <v-card-title class="accent--text">Key Ingredients</v-card-title>
     <v-card-text>
       <div class="pb-6" v-if="ingredients.length">
-        <v-chip-group>
+        <v-chip-group column>
           <v-chip
             v-for="ing in ingredients"
             :key="ing"
